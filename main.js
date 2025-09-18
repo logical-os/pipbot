@@ -14,7 +14,7 @@ const commands = [
   new SlashCommandBuilder().setName('ping').setDescription('Replies with Pong!')
 ].map(command => command.toJSON());
 
-const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({ version: '10' }).setToken("MTQxODMzODIzOTgzMTYwOTQ2Nw.Gg-rZO.Vv_8OOaALaXYuyDXACl-K9L8bTgs1BbyWLfKqo");
 
 (async () => {
   try {
