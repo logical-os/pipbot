@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { Client, GatewayIntentBits, Events, REST, Routes, SlashCommandBuilder } = require('discord.js');
 
 const client = new Client({
@@ -14,13 +13,13 @@ const commands = [
   new SlashCommandBuilder().setName('ping').setDescription('Replies with Pong!')
 ].map(command => command.toJSON());
 
-const rest = new REST({ version: '10' }).setToken("MTQxODMzODIzOTgzMTYwOTQ2Nw.Gg-rZO.Vv_8OOaALaXYuyDXACl-K9L8bTgs1BbyWLfKqo");
+const rest = new REST({ version: '10' }).setToken(process.env.token); // <-- GitHub secret
 
 (async () => {
   try {
     console.log('Registering slash commands...');
     await rest.put(
-      Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
+      Routes.applicationGuildCommands(process.env.client_id, process.env.guild_id), // <-- GitHub secrets
       { body: commands }
     );
     console.log('Slash commands registered.');
@@ -49,4 +48,4 @@ client.on(Events.MessageCreate, message => {
   }
 });
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.token); // <-- GitHub secret
