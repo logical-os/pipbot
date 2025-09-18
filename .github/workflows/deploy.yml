@@ -1,0 +1,29 @@
+name: Run Discord Bot
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run bot
+        env:
+          token: ${{ secrets.token }}
+          client_id: ${{ secrets.client_id }}
+          guild_id: ${{ secrets.guild_id }}
+        run: node main.js
